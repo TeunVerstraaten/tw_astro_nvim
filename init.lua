@@ -29,3 +29,8 @@ vim.bo.expandtab = true
 
 require "lazy_setup"
 require "polish"
+
+vim.keymap.set({ "n", "v" }, "d", '"_d')
+vim.keymap.set({ "n", "v" }, "c", '"_c')
+vim.keymap.set("n", "C", '"_C')
+vim.keymap.set("n", "D", '"_D')
