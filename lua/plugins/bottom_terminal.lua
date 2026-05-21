@@ -30,36 +30,6 @@ local function create_bottom_window(opts)
 
   return { buf = buf, win = win }
 end
--- local function create_bottom_window(opts)
---   opts = opts or {}
---   local width = opts.width or math.floor(vim.o.columns)
---   local height = opts.height or math.floor(vim.o.lines * 0.3)
---
---   local col = 0
---   local row = vim.o.lines - height - 1
---   local buf = nil
---   if vim.api.nvim_buf_is_valid(opts.buf) then
---     buf = opts.buf
---   else
---     buf = vim.api.nvim_create_buf(false, true)
---   end
---
---   -- Define window configuration
---   local win_config = {
---     relative = "editor",
---     width = width,
---     height = height,
---     col = col,
---     row = row,
---     style = "minimal",
---     border = { "", "═", "", "", "", "", "", "" },
---   }
---
---   local win = vim.api.nvim_open_win(buf, true, win_config)
---
---   return { buf = buf, win = win }
--- end
---
 local show_terminal = function()
   if not vim.api.nvim_win_is_valid(state.b_term.win) then
     state.b_term = create_bottom_window { buf = state.b_term.buf }
@@ -82,7 +52,7 @@ end
 vim.api.nvim_create_user_command("ShowBottomTerminal", show_terminal, {})
 vim.api.nvim_create_user_command("HideBottomTerminal", hide_terminal, {})
 
-vim.keymap.set("n", "<leader>tt", function() vim.cmd "ShowBottomTerminal" end, { desc = "Show bottom terminal" })
+vim.keymap.set("n", "<C-\\>", function() vim.cmd "ShowBottomTerminal" end, { desc = "Show bottom terminal" })
 vim.keymap.set("n", "<esc><esc>", function() vim.cmd "HideBottomTerminal" end, { desc = "Hide bottom terminal" })
 
 return {}
